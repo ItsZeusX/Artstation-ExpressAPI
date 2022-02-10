@@ -116,8 +116,9 @@ function GetChannels(req, res, next) {
 }
 function GetProjectsByChannel(req, res, next) {
   channel_id = req.params.channel_id;
-  url = `https://www.artstation.com/api/v2/community/channels/mobile/projects.json?sorting=trending&channel_id=${channel_id}&per_page=20&page=1
-  `;
+  per_page= req.query.per_page || 20;
+  page=req.query.page || 1;
+  url = `https://www.artstation.com/api/v2/community/channels/mobile/projects.json?sorting=trending&channel_id=${channel_id}&per_page=${per_page}&page=${page}`;
   fetch(url, {
     method: "GET",
     headers: headers,
